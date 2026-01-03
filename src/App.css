@@ -1,0 +1,687 @@
+/* ========================= */
+/*       RESET & BASE        */
+/* ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #05010a;
+  color: #e7e7e7;
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  background: radial-gradient(circle at center, #0f051a 0%, #000000 100%);
+    background-attachment: fixed; 
+    color: #e7e7e7;
+}
+
+
+/* ========================= */
+/* OPTIMIZED CURSOR CSS    */
+/* ========================= */
+.cursor-sphere {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background: #b77bff;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(183, 123, 255, 0.8);
+    /* We use will-change to tell the browser this element moves often */
+    will-change: transform;
+}
+
+.cursor-sphere.main {
+    width: 18px;
+    height: 18px;
+}
+
+.cursor-sphere.trail-1 {
+    width: 12px;
+    height: 12px;
+    opacity: 0.6;
+}
+
+.cursor-sphere.trail-2 {
+    width: 8px;
+    height: 8px;
+    opacity: 0.3;
+}
+
+/* ========================= */
+/*     BACKGROUND ELEMENTS   */
+/* ========================= */
+.image-gradient {
+  position: fixed;
+  /* Fixed so it covers the entire scrollable area */
+  top: 0;
+  right: 0;
+  opacity: 0.2;
+  z-index: -2;
+  max-width: 100%;
+  pointer-events: none;
+}
+
+.layer-blur {
+  height: 0;
+  width: 30rem;
+  position: fixed;
+  top: 20%;
+  right: 0;
+  box-shadow: 0 0 700px 50px rgba(138, 43, 225, 0.3);
+  rotate: -30deg;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ========================= */
+/*      HERO SECTION         */
+/* ========================= */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 5rem;
+  z-index: 100;
+  position: relative;
+}
+
+header h1.logo {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+nav a {
+  font-size: 0.9rem;
+  letter-spacing: 0.1rem;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  color: #a7a7a7;
+}
+
+nav a:hover {
+  color: white;
+}
+
+.btn-signing {
+  background-color: #a7a7a7;
+  color: black;
+  padding: 0.6rem 1.8rem;
+  border-radius: 50px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 200;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-signing:hover {
+  background-color: white;
+  transform: scale(1.05);
+}
+
+.content {
+  max-width: 45rem;
+  margin-left: 10%;
+  margin-top: 5rem;
+  z-index: 50;
+  position: relative;
+}
+
+.tag-box {
+  position: relative;
+  width: 15rem;
+  height: 2.2rem;
+  border-radius: 50px;
+  background: linear-gradient(to right, #656565, #7f42a7, #6600c5, #5300a0, #757575);
+  background-size: 200%;
+  animation: animationGradient 3s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tag-box .tag {
+  position: absolute;
+  inset: 2px;
+  background-color: black;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.content h1 {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 1.5rem 0;
+  line-height: 1.1;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #888;
+  max-width: 30rem;
+  line-height: 1.6;
+}
+
+.buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.btn-get-started {
+  text-decoration: none;
+  border: 1px solid #333;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.btn-get-started:hover {
+  background-color: white;
+  color: black;
+}
+
+.btn-signing-main {
+  text-decoration: none;
+  background-color: #e7e7e7;
+  color: black;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+.btn-signing-main:hover {
+  transform: translateY(-3px);
+}
+
+/* ========================= */
+/*     SPLINE POSITIONING    */
+/* ========================= */
+.spline-wrapper {
+  position: absolute;
+  top: 5%;
+  right: -5%;
+  width: 60%;
+  height: 90%;
+  z-index: 10;
+  pointer-events: auto;
+  /* Ensures you can interact with the 3D model */
+}
+
+/* ========================= */
+/*       SPLINE LOADER       */
+/* ========================= */
+.spline-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+  /* Subtle dark overlay */
+  z-index: 5;
+  color: #b77bff;
+  font-family: inherit;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(183, 123, 255, 0.1);
+  border-top: 3px solid #b77bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spline-loader p {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ========================= */
+/*     PROJECTS SECTION      */
+/* ========================= */
+.projects-section {
+  position: relative;
+  padding: 2rem 0;
+  background: #05010a;
+  z-index: 20;
+  background: transparent;
+}
+
+.projects-bg-blur {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40rem;
+  height: 40rem;
+  background: radial-gradient(circle, rgba(83, 0, 160, 0.2) 0%, transparent 70%);
+  filter: blur(100px);
+  z-index: -1;
+  animation: blurPulse 8s infinite alternate;
+}
+
+.projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.projects-header h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(to bottom, #fff, #b77bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: rgba(20, 20, 20, 0.5);
+  border: 1px solid #222;
+  border-radius: 24px;
+  padding: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(10px);
+}
+
+.project-card:hover {
+  transform: translateY(-12px);
+  border-color: #6600c5;
+  box-shadow: 0 20px 40px rgba(83, 0, 160, 0.2);
+}
+
+.project-image {
+  height: 200px;
+  background: #111;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-number {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.05);
+}
+
+.project-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid #333;
+  border-radius: 50px;
+  color: #888;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.project-description {
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+.project-link {
+  text-decoration: none;
+  color: #b77bff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+/* ========================= */
+/*       ABOUT SECTION        */
+/* ========================= */
+
+.about-section {
+  padding: 8rem 0;
+  background: #05010a;
+  position: relative;
+  z-index: 10;
+  background: transparent;
+}
+
+.about-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 4rem;
+  padding: 0 2rem;
+}
+
+/* Left Profile Card */
+.about-profile {
+  flex: 1;
+  text-align: center;
+  background: rgba(15, 15, 15, 0.5);
+  padding: 3rem 2rem;
+  border-radius: 30px;
+  border: 1px solid #222;
+  backdrop-filter: blur(10px);
+}
+
+.profile-image-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 1.5rem;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #b77bff;
+}
+
+.status-badge {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: #1a1a1a;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  border: 1px solid #333;
+}
+
+.profile-name {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-role {
+  color: #b77bff;
+  font-weight: 600;
+}
+
+.profile-org {
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.social-icons a {
+  transition: transform 0.3s ease, filter 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icons img {
+  width: 24px;
+  /* Adjust size as needed */
+  height: 24px;
+  filter: brightness(0) invert(1);
+  /* Ensures icons stay white */
+  opacity: 0.7;
+}
+
+.social-icons a:hover {
+  transform: translateY(-5px);
+}
+
+.social-icons a:hover img {
+  opacity: 1;
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px #b77bff);
+}
+
+/* Right Details Section */
+.about-details {
+  flex: 2;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.bio-text {
+  color: #aaa;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.8rem 1.5rem;
+  background: #222;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  border: 1px solid #333;
+  margin-bottom: 3rem;
+  transition: background 0.3s;
+}
+
+.btn-download:hover {
+  background: #333;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.info-column h3 {
+  color: #b77bff;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.info-column ul {
+  list-style: none;
+}
+
+.info-column li {
+  color: #eee;
+  margin-bottom: 10px;
+}
+
+.edu-item {
+  margin-bottom: 1.5rem;
+}
+
+.edu-degree {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.edu-meta {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ========================= */
+/*       ANIMATIONS          */
+/* ========================= */
+@keyframes animationGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes blurPulse {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* ========================= */
+/*       RESPONSIVE          */
+/* ========================= */
+@media (max-width: 1024px) {
+  header {
+    padding: 2rem;
+  }
+
+  .spline-wrapper {
+    width: 50%;
+    right: -10%;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  nav {
+    gap: 1.5rem;
+  }
+
+  .content {
+    margin: 5rem auto;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .spline-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    right: 0;
+    margin-top: 2rem;
+  }
+
+  .projects-header h2 {
+    font-size: 2.5rem;
+  }
+}
